@@ -3,22 +3,15 @@
 
 
 {% block title %}Voici la liste des detail de stages {% endblock %}
+
 {% block body %}
+    <div class="col-md-8">
+			<p>
+				<li>nom du recruteur : NOM</li>
+               <li> Date du stage : DATE</li>
+            <p><li> Description du stage : DATE</li></p>
+            </p>
+		</div>
 
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<h1> Voici la {{ controller_name }} d'id {{id}} </h1>
+     {% endblock %}
 
-{% endblock %}
-
-{% block menu %}
-<div class="container">   
-    <ul>
-        <li>La page d'entreprise : <code><a href="{{ '/entreprises '}}">Entreprise</a></code></li>
-		<li>La page de stage : <code><a href="{{ './stages/1'}}">stage</a></code></li>
-		<li>La page de Formation :  <code><a href="{{ '/' }}">Accueil</a></code></li>
-    </ul>
-</div>
-    {% endblock %}
