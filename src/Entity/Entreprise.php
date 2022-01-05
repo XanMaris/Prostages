@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,12 +32,22 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=200)
      */
-    private $activit├®;
+    private $activite;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $URLsite;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stage::class, mappedBy="entreprise")
+     */
+    private $stages;
+
+    public function __construct()
+    {
+        $this->stages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -66,14 +78,14 @@ class Entreprise
         return $this;
     }
 
-    public function getActivit├®(): ?string
+    public function getActivite(): ?string
     {
-        return $this->activit├®;
+        return $this->activite;
     }
 
-    public function setActivit├®(string $activit├®): self
+    public function setActivite(string $activite): self
     {
-        $this->activit├® = $activit├®;
+        $this->activite = $activite;
 
         return $this;
     }
@@ -86,6 +98,36 @@ class Entreprise
     public function setURLsite(string $URLsite): self
     {
         $this->URLsite = $URLsite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stages->removeElement($stage)) {
+            // set the owning side to null (unless already changed)
+            if ($stage->getEntreprise() === $this) {
+                $stage->setEntreprise(null);
+            }
+        }
 
         return $this;
     }
