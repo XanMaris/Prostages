@@ -6,24 +6,26 @@
 
 {% block body %}
 <div class="col-md-8">
+{% for uneEntreprise in entreprises %}
     <table class="table">
 				<thead>
 					<tr>
 						<th>
-							#ID
+							{{ uneEntreprise.ID }}
 						</th>
 						<th>
-							Nom de l'entreprise
+							{{ uneEntreprise.nom }}
 						</th>
 						<th>
-							Domaine
+							{{ uneEntreprise.activite }}
 						</th>
 						<th>
-							Nbr d'offre
+							{{ uneEntreprise.URLsite }}
 						</th>
 					</tr>
 				</thead>
 				<tbody>
+{% endfor %}
 					
 					<tr class="table-success">
 						<td>
