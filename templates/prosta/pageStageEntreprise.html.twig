@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Voici la liste des stages par Entreprise {% endblock %}
+
+{% block body %}
+
+{% for stage in entreprise.stages %}
+    {{stage.titre}}
+		
+{% endfor %}
+					
+		
+
+     {% endblock %}

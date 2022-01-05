@@ -28,7 +28,7 @@
 							{{ unStage.ID }}
 						</td>
 						<td>
-							<li><code><a href="./stage/{{unStage.ID }}">{{ unStage.titre }}</a></code></li>
+							<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">{{ unStage.titre }}</a></code></li>
 						</td>
 						<td>
 								{{ unStage.description}}

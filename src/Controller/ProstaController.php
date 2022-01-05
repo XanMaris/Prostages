@@ -51,7 +51,7 @@ class ProstaController extends AbstractController
 	
 	
 	/**
-	 * @Route ("/stages/{id}" , name =" openclassdut_stages ")
+	 * @Route ("/stages/{id}" , name ="detail_stages")
 	 */
 	 public function afficherStages ($id) : Response
 	 {
@@ -61,7 +61,7 @@ class ProstaController extends AbstractController
 	 
 
 	 /**
-	* @Route ("/entreprises/{id}" , name ="prostages/trierPar ")
+	* @Route ("/entreprises/{id}" , name ="stages-entreprise")
 	*/
 
 	 public function AfficherStageDe($id) 
@@ -71,13 +71,14 @@ class ProstaController extends AbstractController
  
 		 $entreprise=$repositoryEntreprise->find($id);
  
-		 $repositoryStage=$this-getDoctrine()->getRepository(Stage::class);
  
-		 $stages=$repositoryStage->findBy('Entreprises'->$entreprise);
- 
-		 return this->redirectToRoute('pageStageEntreprise.html.twig',['stages'=>$stages]);
+		 return $this->render('prosta/pageStageEntreprise.html.twig',['entreprise'=>$entreprise]);
  
 	 }
+
+	 /**
+	* @Route ("/formation/{id}" , name ="formation_stage")
+	*/
 
 
 
