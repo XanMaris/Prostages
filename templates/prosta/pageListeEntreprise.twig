@@ -6,69 +6,43 @@
 
 {% block body %}
 <div class="col-md-8">
-{% for uneEntreprise in entreprises %}
+
     <table class="table">
 				<thead>
 					<tr>
 						<th>
-							{{ uneEntreprise.ID }}
+							1
 						</th>
 						<th>
-							{{ uneEntreprise.nom }}
+							1
 						</th>
 						<th>
-							{{ uneEntreprise.activite }}
+							1
 						</th>
 						<th>
-							{{ uneEntreprise.URLsite }}
+							1
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-{% endfor %}
+{% for uneEntreprise in entreprises %}
+
 					
 					<tr class="table-success">
 						<td>
 							1
 						</td>
 						<td>
-							<li><code><a href="{{ './stages/PandaLand'}}">PandaLand</a></code></li>
+							<li><code><a href="{{ uneEntreprise.ID }}">PandaLand</a></code></li>
 						</td>
 						<td>
-							Animalerie
+								{{ uneEntreprise.nom }}
 						</td>
 						<td>
-							 2 Propositions
+							 {{uneEntreprise.URLsite }}
 						</td>
 					</tr>
-					<tr class="table-success">
-						<td>
-							2
-						</td>
-						<td>
-							   <li><code><a href="{{ './stages/Ardeco'}}">Ardeco</a></code></li>
-						</td>
-						<td>
-                                Service client
-						</td>
-						<td>
-                                4 Propositions
-						</td>
-					</tr>
-					<tr class="table-success">
-						<td>
-							3
-						</td>
-						<td>
-						     <li> <code><a href="{{ './stages/WiniLand'}}">WiniLand</a></code></li>
-						</td>
-						<td>
-                                Metalurgie
-						</td>
-						<td>
-                                4 Propositions
-						</td>
-					</tr>
+{% endfor %}
 					
 				</tbody>
 			</table>
