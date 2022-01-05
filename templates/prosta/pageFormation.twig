@@ -2,14 +2,45 @@
 
 
 
-{% block title %}Voici la liste des stages par Formation {% endblock %}
-{% block body %}
-    <div class="col-md-8">
-			<p>
-				<li>BAC + 5 :<code><a href="{{ './stages/Ardeco'}}">stage</a></code></li>
-               <li> BAC + 2 :<code><a href="{{ './stages/PandaLand'}}">stage</a></code></li>
-               <li> BAC + 3 :<code><a href="{{ './stages/WiniLand'}}">stage</a></code></li>
+{% block title %}Voici la liste des stages par Formations {% endblock %}
 
-            </p>
+{% block body %}
+<div class="col-md-8">
+
+    <table class="table">
+				<thead>
+					<tr>
+						<th>
+							#ID
+						</th>
+						<th>
+							Nom Court
+						</th>
+						<th>
+							Nom Complet
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+{% for uneFormation in formations %}
+
+					
+					<tr class="table-success">
+						<td>
+							{{ uneFormation.ID }}
+						</td>
+						<td>
+							<li><code><a href=" ./stage/{{uneFormation.nomCourt }}">{{ uneFormation.nomCourt }}</a></code></li>
+						</td>
+						<td>
+								{{ uneFormation.nom }}
+						</td>
+					</tr>
+{% endfor %}
+					
+				</tbody>
+			</table>
 		</div>
-{% endblock %}
+    
+
+     {% endblock %}

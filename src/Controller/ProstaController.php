@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
+use App\Entity\Fomration;
+use App\Entity\Stage;
 
 class ProstaController extends AbstractController
 {
@@ -15,7 +17,9 @@ class ProstaController extends AbstractController
     public function index(): Response
     {
       
-		return $this->render('prosta/index.html.twig',['controller_name'=>'Liste de Stage ']);
+		$repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+		$stages=$repositoryStage->findAll();
+		return $this->render('prosta/index.html.twig',['stages'=>$stages,'controller_name'=>'Liste de Stage ']);
     }
 	
 	/**
@@ -37,8 +41,9 @@ class ProstaController extends AbstractController
 	*/
 	public function afficherFormations () : Response
 	{
-		
-		return $this->render('prosta/pageFormation.twig',['controller_name'=>'Tri par formation']);
+		$repositoryFomration=$this->getDoctrine()->getRepository(Fomration::class);
+		$formations=$repositoryFomration->findAll();
+		return $this->render('prosta/pageFormation.twig',['formations'=>$formations,'controller_name'=>'Tri par formation']);
 		 
 		
 	}
@@ -56,10 +61,12 @@ class ProstaController extends AbstractController
 	 
 
 	 /**
-	* @Route ("/entreprise/{id}" , name ="prostages/trierPar ")
+	* @Route ("/entreprises/{id}" , name ="prostages/trierPar ")
 	*/
+
 	 public function AfficherStageDe($id) 
 	 {
+
 		 $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
  
 		 $entreprise=$repositoryEntreprise->find($id);
@@ -68,7 +75,7 @@ class ProstaController extends AbstractController
  
 		 $stages=$repositoryStage->findBy('Entreprises'->$entreprise);
  
-		 return this->redirectToRoute('listeStage.html.twig',['stages'=>$stages]);
+		 return this->redirectToRoute('pageStageEntreprise.html.twig',['stages'=>$stages]);
  
 	 }
 

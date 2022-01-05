@@ -1,3 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Bonjour  ProstaController!{% endblock %}
+
+{% block body %}
+<div class="col-md-8">
+
+    <table class="table">
+				<thead>
+					<tr>
+						<th>
+							#ID
+						</th>
+						<th>
+							Nom du Stage
+						</th>
+						<th>
+							Description
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+{% for unStage in stages %}
+
+					
+					<tr class="table-success">
+						<td>
+							{{ unStage.ID }}
+						</td>
+						<td>
+							<li><code><a href="./stage/{{unStage.ID }}">{{ unStage.titre }}</a></code></li>
+						</td>
+						<td>
+								{{ unStage.description}}
+						</td>
+					</tr>
+{% endfor %}
+					
+				</tbody>
+			</table>
+		</div>
+    
+
+     {% endblock %}

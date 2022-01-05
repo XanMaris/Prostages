@@ -11,16 +11,16 @@
 				<thead>
 					<tr>
 						<th>
-							1
+							#ID
 						</th>
 						<th>
-							1
+							Nom
 						</th>
 						<th>
-							1
+							Domaine
 						</th>
 						<th>
-							1
+							URL
 						</th>
 					</tr>
 				</thead>
@@ -30,13 +30,13 @@
 					
 					<tr class="table-success">
 						<td>
-							1
+							{{ uneEntreprise.ID }}
 						</td>
 						<td>
-							<li><code><a href="{{ uneEntreprise.ID }}">PandaLand</a></code></li>
+							<li><code><a href=" ./stage/{{uneEntreprise.ID }}">{{ uneEntreprise.nom }}</a></code></li>
 						</td>
 						<td>
-								{{ uneEntreprise.nom }}
+								{{ uneEntreprise.activite }}
 						</td>
 						<td>
 							 {{uneEntreprise.URLsite }}
