@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
             $formation->setNomCourt($nomCourt);
             $formation->setNom($nomLong);
             $manager->persist($formation);
-    } 
+    
         
            //creation stage 
 
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
             //numero aleatoire
             $numeroEntreprise = $faker->numberBetween($min=0, $max=9);
             $stage = new Stage();
-            $stage->setTitre($faker->realtext());
+            $stage->setTitre($faker->jobtitle);
             $stage->setDescription($faker->realtext());
             $stage->setEmail($faker->email);
 
@@ -64,6 +64,7 @@ class AppFixtures extends Fixture
             $entreprises[$numeroEntreprise]->addStage($stage);
             
             $manager->persist($stage);
+    }
         }
     
         

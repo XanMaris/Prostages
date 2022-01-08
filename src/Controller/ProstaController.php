@@ -11,7 +11,9 @@ use App\Entity\Stage;
 
 class ProstaController extends AbstractController
 {
-    /**
+    
+		//PAGE D ACCUEIL LISTE DE STAGE
+	/**
      * @Route("/", name="prostages_accueil")
      */
     public function index(): Response
@@ -22,8 +24,9 @@ class ProstaController extends AbstractController
 		return $this->render('prosta/index.html.twig',['stages'=>$stages,'controller_name'=>'Liste de Stage ']);
     }
 	
+		//PAGE D ACCUEIL LISTE DE DES ENTREPRISES ( si click sur filtrer par entreprise)
 	/**
-	* @Route ("/entreprises" , name =" prostages_entreprises ")
+	* @Route ("/entreprises" , name =" pageListeEntreprise ")
 	*/
 	public function afficherEntreprises () : Response
 	{
@@ -34,6 +37,7 @@ class ProstaController extends AbstractController
 		return $this->render('prosta/pageListeEntreprise.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
 	}
 	
+		//PAGE D ACCUEIL LISTE DE DES FORMATIONS ( si click sur filtrer par formation)
 	/**
 	* @Route ("/formations" , name ="prostages_formations ")
 	*/
@@ -41,13 +45,13 @@ class ProstaController extends AbstractController
 	{
 		$repositoryFomration=$this->getDoctrine()->getRepository(Fomration::class);
 		$formations=$repositoryFomration->findAll();
-		return $this->render('prosta/pageFormation.twig',['formations'=>$formations,'controller_name'=>'Tri par formation']);
+		return $this->render('prosta/pageListeFormations.twig',['formations'=>$formations,'controller_name'=>'Tri par formation']);
 		 
 		
 	}
 	
 	
-	
+		//PAGE QUI AFFICHE LES DETAILS D UN STAGE SI CLICK DESSUS
 	/**
 	 * @Route ("/stages/{id}" , name ="detail_stages")
 	 */
@@ -61,6 +65,7 @@ class ProstaController extends AbstractController
 	 }
 
 	 
+	 	//PAGE QUI AFFICHE LES STAGE DE L ENTREPRISE CLICKE
 
 	 /**
 	* @Route ("/entreprises/{id}" , name ="stages-entreprise")
@@ -78,6 +83,7 @@ class ProstaController extends AbstractController
  
 	 }
 
+	 		//PAGE QUI AFFICHE LES STAGE DE LA FORMATION CLICKE
 	 /**
 	* @Route ("/formations/{id}" , name ="StagesDeformation")
 	*/
