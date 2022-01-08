@@ -1,16 +1,44 @@
 {% extends 'base.html.twig' %}
 
-
-
-{% block title %}Voici la liste des stages par Entreprise {% endblock %}
+{% block title %}Bonjour  ProstaController!{% endblock %}
 
 {% block body %}
+<div class="col-md-8">
 
-{% for stage in entreprise.stages %}
-    {{stage.titre}}
-		
+    <table class="table">
+				<thead>
+					<tr>
+						<th>
+							#ID
+						</th>
+						<th>
+							Nom du Stage
+						</th>
+						<th>
+							Description
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+{% for unStage in entreprise.stages %}
+
+					
+					<tr class="table-success">
+						<td>
+							{{ unStage.ID }}
+						</td>
+						<td>
+							<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">{{ unStage.titre }}</a></code></li>
+						</td>
+						<td>
+								{{ unStage.description}}
+						</td>
+					</tr>
 {% endfor %}
 					
-		
+				</tbody>
+			</table>
+		</div>
+    
 
      {% endblock %}

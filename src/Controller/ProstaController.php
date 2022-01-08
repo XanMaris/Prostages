@@ -30,9 +30,7 @@ class ProstaController extends AbstractController
 		
 		
 		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
- 
 		$entreprises=$repositoryEntreprise->findAll();
-
 		return $this->render('prosta/pageListeEntreprise.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
 	}
 	
@@ -55,7 +53,11 @@ class ProstaController extends AbstractController
 	 */
 	 public function afficherStages ($id) : Response
 	 {
-		return $this->render('prosta/pageDetailStage.twig',['controller_name'=>'Details stage','id'=>$id]);
+		$repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+		$stage = $repositoryStage->find($id);
+
+
+		return $this->render('prosta/pageDetailStage.twig',['stage'=>$stage,'controller_name'=>'Details stage','id'=>$id]);
 	 }
 
 	 
@@ -64,7 +66,7 @@ class ProstaController extends AbstractController
 	* @Route ("/entreprises/{id}" , name ="stages-entreprise")
 	*/
 
-	 public function AfficherStageDe($id) 
+	 public function AfficherStageDeEntreprise($id) 
 	 {
 
 		 $repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
@@ -77,8 +79,20 @@ class ProstaController extends AbstractController
 	 }
 
 	 /**
-	* @Route ("/formation/{id}" , name ="formation_stage")
+	* @Route ("/formations/{id}" , name ="StagesDeformation")
 	*/
+	 public function AfficherStageDeFormation($id) : Response
+	{
+
+		$repositoryFormation=$this->getDoctrine()->getRepository(Fomration::class);
+
+		$formation=$repositoryFormation->find($id);
+
+
+		return $this->render('prosta/pageStageParFormation.html.twig',['formation'=>$formation]);
+
+	}
+
 
 
 

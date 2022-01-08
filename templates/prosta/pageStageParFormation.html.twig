@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-
-
-{% block title %}Voici la liste des stages par Formations {% endblock %}
+{% block title %}Bonjour  ProstaController!{% endblock %}
 
 {% block body %}
 <div class="col-md-8">
@@ -14,26 +12,26 @@
 							#ID
 						</th>
 						<th>
-							Nom Court
+							Nom du Stage
 						</th>
 						<th>
-							Nom Complet
+							Description
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-{% for uneFormation in formations %}
+{% for unStage in formation.stages %}
 
 					
 					<tr class="table-success">
 						<td>
-							{{ uneFormation.ID }}
+							{{ unStage.ID }}
 						</td>
 						<td>
-							<li><code><a href="{{ path('StagesDeformation', {'id' : uneFormation.ID }) }}">{{ uneFormation.nomCourt }}</a></code></li>
+							<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">{{ unStage.titre }}</a></code></li>
 						</td>
 						<td>
-								{{ uneFormation.nom }}
+								{{ unStage.description}}
 						</td>
 					</tr>
 {% endfor %}

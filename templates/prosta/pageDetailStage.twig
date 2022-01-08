@@ -7,9 +7,11 @@
 {% block body %}
     <div class="col-md-8">
 			<p>
-				<li>nom du recruteur : NOM</li>
-               <li> Date du stage : DATE</li>
-            <p><li> Description du stage : DATE</li></p>
+				<p><li>Titre du stage : {{ stage.titre }}</li></p>
+               <p><li> Recruteur du stage : {{stage.entreprise.nom}}</li></p>
+            <p><li> Description du stage : {{ stage.description }} </li></p>
+            {# <li> Formation(s) requise(s) : {{formation.nom}}</li> #}
+           <p> <li> Mail de contact : {{stage.email}}</li></p>
             </p>
 		</div>
 
