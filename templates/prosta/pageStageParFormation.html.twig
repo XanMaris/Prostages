@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}stage par formation {% endblock %}
+{% block title %}stage de la formation {% endblock %}
 
 {% block body %}
 <div class="col-md-12">
@@ -28,10 +28,17 @@
 							{{ unStage.ID }}
 						</td>
 						<td>
-							<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">{{ unStage.titre }}</a></code></li>
+							<dt> {{ unStage.titre }} </dt>
 						</td>
 						<td>
-								{{ unStage.description}}
+								{{ unStage.entreprise.adresse}}
+						</td>
+
+						<td>
+								{{ unStage.email }}
+						</td>
+						<td>
+								<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">Voir aussi </a></code></li>
 						</td>
 					</tr>
 {% endfor %}
