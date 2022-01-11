@@ -5,14 +5,40 @@
 {% block title %}Voici la liste des detail de stages {% endblock %}
 
 {% block body %}
-    <div class="col-md-8">
-			<p>
-				<p><li>Titre du stage : {{ stage.titre }}</li></p>
-               <p><li> Recruteur du stage : {{stage.entreprise.nom}}</li></p>
-            <p><li> Description du stage : {{ stage.description }} </li></p>
-            {# <li> Formation(s) requise(s) : {{formation.nom}}</li> #}
-           <p> <li> Mail de contact : {{stage.email}}</li></p>
-            </p>
+    <div class="col-md-12">
+			<div>
+				<dt>Titre du stage :  
+                </dt>
+                <dd>{{ stage.titre }}</dd>
+                
+                <dt> Recruteur du stage :  
+                </dt>
+                <dd>{{stage.entreprise.nom}}</dd>
+
+                <dt>Description du stage :  
+                </dt>
+                <dd>{{ stage.description }}</dd>
+
+                <dt>Adresse de l'entreprise :  
+                </dt>
+                <dd>{{ stage.entreprise.adresse}}</dd>
+
+                <dt> Activité : </li>
+                </dt>
+                <dd>{{ stage.entreprise.activite }}</dd>
+
+                <dt> Mail de contact :  
+                </dt>
+                <dd>{{stage.email}}</dd>
+
+                <dt>  Formation(s) requise(s) : 
+                </dt>
+                <dd>{% for formation in stage.formation %}
+                     {{formation.nomCourt}}
+                </dd>
+                {% endfor %}
+               
+            </div>
 		</div>
 
      {% endblock %}

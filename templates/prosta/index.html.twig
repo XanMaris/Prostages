@@ -3,7 +3,7 @@
 {% block title %}Bonjour  ProstaController!{% endblock %}
 
 {% block body %}
-<div class="col-md-8">
+<div class="col-md-12">
 
     <table class="table">
 				<thead>
@@ -15,7 +15,14 @@
 							Nom du Stage
 						</th>
 						<th>
-							Description
+							Adresse de l'entreprise
+						</th>
+						<th>
+							mail de l'entreprise
+						</th>
+
+						<th>
+							Plus de détail
 						</th>
 					</tr>
 				</thead>
@@ -28,10 +35,17 @@
 							{{ unStage.ID }}
 						</td>
 						<td>
-							<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">{{ unStage.titre }}</a></code></li>
+							<dt> {{ unStage.titre }} </dt>
 						</td>
 						<td>
-								{{ unStage.description}}
+								{{ unStage.entreprise.adresse}}
+						</td>
+
+						<td>
+								{{ unStage.email }}
+						</td>
+						<td>
+								<li><code><a href="{{ path('detail_stages', {'id' : unStage.ID }) }}">Voir aussi </a></code></li>
 						</td>
 					</tr>
 {% endfor %}

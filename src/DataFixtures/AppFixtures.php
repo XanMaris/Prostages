@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
             $formation->setNom($nomLong);
             $manager->persist($formation);
     
-        
+      
            //creation stage 
 
         for ($i=0;$i<10;$i++)
@@ -57,7 +57,10 @@ class AppFixtures extends Fixture
             $stage->setDescription($faker->realtext());
             $stage->setEmail($faker->email);
 
-            $stage->addFormation($formation);
+            
+
+           
+           
 
 
             $stage->setEntreprise($entreprises[$numeroEntreprise]);
@@ -65,7 +68,7 @@ class AppFixtures extends Fixture
             
             $manager->persist($stage);
     }
-        }
+}
     
         
         
