@@ -34,7 +34,7 @@ class ProstaController extends AbstractController
 		
 		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
 		$entreprises=$repositoryEntreprise->findAll();
-		return $this->render('prosta/pageListeEntreprise.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
+		return $this->render('prosta/pageListeEntreprise.html.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
 	}
 	
 		//PAGE D ACCUEIL LISTE DE DES FORMATIONS ( si click sur filtrer par formation)
@@ -45,7 +45,7 @@ class ProstaController extends AbstractController
 	{
 		$repositoryFomration=$this->getDoctrine()->getRepository(Fomration::class);
 		$formations=$repositoryFomration->findAll();
-		return $this->render('prosta/pageListeFormations.twig',['formations'=>$formations,'controller_name'=>'Tri par formation']);
+		return $this->render('prosta/pageListeFormations.html.twig',['formations'=>$formations,'controller_name'=>'Tri par formation']);
 		 
 		
 	}
@@ -61,7 +61,7 @@ class ProstaController extends AbstractController
 		$stage = $repositoryStage->find($id);
 
 
-		return $this->render('prosta/pageDetailStage.twig',['stage'=>$stage,'controller_name'=>'Details stage','id'=>$id]);
+		return $this->render('prosta/pageDetailStage.html.twig',['stage'=>$stage,'controller_name'=>'Details stage','id'=>$id]);
 	 }
 
 	 

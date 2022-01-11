@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
 
             
 
-           
+           $stage->addFormation($formation);
            
 
 
@@ -67,8 +67,8 @@ class AppFixtures extends Fixture
             $entreprises[$numeroEntreprise]->addStage($stage);
             
             $manager->persist($stage);
+        }
     }
-}
     
         
         
