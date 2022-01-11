@@ -30,45 +30,49 @@
     <body>
 
 	 {% block menu %}
-        
-        
-        <div class="btn-groupbtn-group-vertical" role="group">
-				 
-				
-				<img src="{{asset('./Logo_prostages.png')}}" class="rounded" alt="logo ProStages">
-				
-				<a button class="btn btn-secondary" type="button" href="{{ '/entreprises '}}"> Filtrer par entreprises</a>
-				</button> 
-				<a button class="btn btn-secondary" type="button" href="{{ '/formations' }}"> Filtrer par formation </a>
-				</button> 
-                <a button class="btn btn-secondary" type="button" href="{{ '/' }}"> ACCUEIL </a>
-				</button> 
-				
-        </div>
-    
-    {% endblock %}
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<center>
+							<img src="{{asset('./Logo_prostages.png')}}" class="rounded" alt="logo ProStages">
+						</center>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<center>
+							<a button class="btn btn-secondary" type="button" href="{{ '/entreprises '}}"> Filtrer par entreprises</a>
+							</button> 
+							<a button class="btn btn-secondary" type="button" href="{{ '/formations' }}"> Filtrer par formation </a>
+							</button> 
+							<a button class="btn btn-secondary" type="button" href="{{ '/' }}"> ACCUEIL </a>
+							</button> 
+						</center>
+					</div>
+				</div>
+			</div>
+   			{% endblock %}
 
-    <div class="container-fluid">
-    <div class="row">
+    		<div class="container-fluid">
+    			<div class="row">
 
-
-        {% block titre %}
+       				 {% block titre %}
 
        
-        {% endblock %}
+       				 {% endblock %}
 
-    </div>
+    				</div>
 
-    <div class="row">
-    {% block body %}
+    				<div class="row">
+   						 {% block body %}
 
 
-     {% endblock %}
+     					{% endblock %}
 
    
 
-    </div>
-</div>
+    				</div>
+				</div>
 
  
 
