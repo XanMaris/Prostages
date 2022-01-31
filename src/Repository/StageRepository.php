@@ -59,6 +59,32 @@ class StageRepository extends ServiceEntityRepository
         $requete->setParameter('nomFormation',$nom);
         return $requete->execute();
     }
+
+
+    public function ListeDeStages()
+    {
+        $gestionnaireEntite = $this->getEntityManager();
+
+        $requete = $gestionnaireEntite -> createQuery ("SELECT s,e
+        FROM App\Entity\Stage s
+        JOIN s.entreprise e");
+        return $requete->execute();
+    }
+
+    // public function DetailStage($id)
+    // {
+    //     $gestionnaireEntite = $this->getEntityManager();
+
+    //     $requete = $gestionnaireEntite -> createQuery ("SELECT s
+    //     FROM App\Entity\Stage s
+    //     JOIN s.formation f
+    //     JOIN s.entreprise e
+    //     where s.id = :idStage");
+        
+    //     $requete->setParameter('idStage',$id);
+    //     return $requete->execute();
+    // }
+
     /*
     public function findOneBySomeField($value): ?Stage
     {

@@ -20,7 +20,7 @@ class ProstaController extends AbstractController
     {
       
 		$repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
-		$stages=$repositoryStage->findAll();
+		$stages=$repositoryStage->ListeDeStages();
 		return $this->render('prosta/index.html.twig',['stages'=>$stages,'controller_name'=>'Liste de Stage ']);
     }
 	
@@ -33,7 +33,7 @@ class ProstaController extends AbstractController
 		
 		
 		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
-		$entreprises=$repositoryEntreprise->findAll();
+		$entreprises=$repositoryEntreprise->TrieParEntreprise();
 		return $this->render('prosta/pageListeEntreprise.html.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
 	}
 	

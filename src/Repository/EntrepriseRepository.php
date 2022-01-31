@@ -47,4 +47,14 @@ class EntrepriseRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function TrieParEntreprise()
+    {
+        $gestionnaireEntite = $this->getEntityManager();
+
+        $requete = $gestionnaireEntite -> createQuery ("SELECT e,s
+        FROM App\Entity\Entreprise e
+        JOIN e.stages s");
+        return $requete->execute();
+    }
 }
