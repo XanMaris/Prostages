@@ -8,6 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
 use App\Entity\Fomration;
 use App\Entity\Stage;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProstaController extends AbstractController
 {
@@ -26,7 +32,7 @@ class ProstaController extends AbstractController
 	
 		//PAGE D ACCUEIL LISTE DE DES ENTREPRISES ( si click sur filtrer par entreprise)
 	/**
-	* @Route ("/entreprises" , name =" pageListeEntreprise ")
+	* @Route ("/entreprises" , name ="pageListeEntreprise")
 	*/
 	public function afficherEntreprises () : Response
 	{
@@ -101,11 +107,40 @@ class ProstaController extends AbstractController
 
 	}
 
+
+	/**
+	* @Route ("/AjouterEntreprise" , name ="Ajouter entreprise")
+	*/
+		
+public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $manager)
+
+{
+	$entreprises = new Entreprise();
+
+	//création de l'objet formulaire 
+
+	$formulaireEntreprise = $this->createFormBuilder($entreprises)
+							->add('nom')
+							->add('adresse')
+							->add('activite',TextareaType::class)
+							->add('URLsite',Urltype::class)
+							->add('Ajouter',SubmitType::class)
+							->getForm();
+
 	
-	 
+	$formulaireEntreprise->handleRequest($requestHttp);
+
+	if ($formulaireEntreprise->isSubmitted())
+	{
+		$manager->persist($entreprises);
+		$manager->flush();
+		return $this->redirectToRoute('pageListeEntreprise');
+	}
+
+	return $this-> render('prosta/pageFormulaireDeSaisie.html.twig',['vueFormulaire'=>$formulaireEntreprise->createView()]);
 
 
-
+}
 
 }
 

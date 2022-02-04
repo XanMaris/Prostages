@@ -54,7 +54,7 @@ class EntrepriseRepository extends ServiceEntityRepository
 
         $requete = $gestionnaireEntite -> createQuery ("SELECT e,s
         FROM App\Entity\Entreprise e
-        JOIN e.stages s");
+        join e.stages s");
         return $requete->execute();
     }
 }
