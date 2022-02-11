@@ -57,4 +57,15 @@ class EntrepriseRepository extends ServiceEntityRepository
         join e.stages s");
         return $requete->execute();
     }
+
+    public function RecupererEntrepriseAvecNom($nom)
+    {
+        $gestionnaireEntite = $this->getEntityManager();
+
+        $requete = $gestionnaireEntite -> createQuery ("SELECT e
+        FROM App\Entity\Entreprise e
+        where e.nom = :nomEntreprise");
+        $requete->setParameter('nomEntreprise',$nom);
+        return $requete->getOneOrNullResult();
+    }
 }

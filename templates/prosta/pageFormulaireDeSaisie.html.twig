@@ -1,10 +1,27 @@
 {% extends 'base.html.twig' %}
-
-
-
-
-
 {% block body %}
-    
-{{ form (vueFormulaire) }}
+
+{{ form_start (vueFormulaire) }}
+
+<div>
+     {{ form_label (vueFormulaire.nom,{'titre'})}}
+     {{ form_errors (vueFormulaire.nom)}}
+     {{ form_widget (vueFormulaire.nom)}}
+</div>
+<div>
+     {{ form_label (vueFormulaire.adresse)}}
+     {{ form_errors (vueFormulaire.adresse)}}
+     {{ form_widget (vueFormulaire.adresse)}}
+</div>
+<div>
+     {{ form_label (vueFormulaire.activite)}}
+     {{ form_errors (vueFormulaire.activite)}}
+     {{ form_widget (vueFormulaire.activite)}}
+</div>
+<div>
+     {{ form_label (vueFormulaire.URLsite)}}
+     {{ form_errors (vueFormulaire.URLsite)}}
+     {{ form_widget (vueFormulaire.URLsite)}}
+</div>
+{{ form_end (vueFormulaire) }}
      {% endblock %}

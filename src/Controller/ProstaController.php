@@ -39,7 +39,7 @@ class ProstaController extends AbstractController
 		
 		
 		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
-		$entreprises=$repositoryEntreprise->TrieParEntreprise();
+		$entreprises=$repositoryEntreprise->findAll();
 		return $this->render('prosta/pageListeEntreprise.html.twig',['entreprises'=>$entreprises,'controller_name'=>'Tri par Entreprise']);
 	}
 	
@@ -85,7 +85,7 @@ class ProstaController extends AbstractController
 		$stages = $repositoryStage->stageParEntreprise($nom);
 
 
-		return $this->render('prosta/pageStageEntreprise.html.twig',['stages'=>$stages]);
+		return $this->render('prosta/pageStageEntreprise.html.twig',['stages'=>$stages,'nomEntreprise'=>$nom]);
 
 	}
 
@@ -141,6 +141,45 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 
 
 }
+
+	/**
+	* @Route ("/entreprises/{nom}/ModifierEntreprise" , name ="Modifier-entreprise")
+	*/
+		
+	public function ModifierEntreprise(Request $requestHttp, EntityManagerInterface $manager,$nom )
+
+	{
+		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
+
+		 $entreprise=$repositoryEntreprise->RecupererEntrepriseAvecNom($nom);
+
+		
+		
+	
+		//création de l'objet formulaire 
+	
+		$formulaireEntreprise = $this->createFormBuilder($entreprise)
+								->add('nom')
+								->add('adresse')
+								->add('activite',TextareaType::class)
+								->add('URLsite',Urltype::class)
+								->add('Ajouter',SubmitType::class)
+								->getForm();
+	
+		
+		$formulaireEntreprise->handleRequest($requestHttp);
+	
+		if ($formulaireEntreprise->isSubmitted())
+		{
+			$manager->persist($entreprise);
+			$manager->flush();
+			return $this->redirectToRoute('pageListeEntreprise');
+		}
+	
+		return $this-> render('prosta/pageFormulaireDeSaisie.html.twig',['vueFormulaire'=>$formulaireEntreprise->createView()]);
+	
+	
+	}
 
 }
 
