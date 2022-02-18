@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="row">
+<div class="col-md-3">
+ </div>
+	<div class="col-md-6">
+		<center>
+			{{ form_start (vueFormulaire) }}
+               {{ form_label (vueFormulaire.titre)}}
+               {{ form_errors (vueFormulaire.titre)}}
+               {{ form_widget (vueFormulaire.titre)}}
+
+               {{ form_label (vueFormulaire.description)}}
+               {{ form_errors (vueFormulaire.description)}}
+               {{ form_widget (vueFormulaire.description)}}
+
+
+               {{ form_label (vueFormulaire.email)}}
+               {{ form_errors (vueFormulaire.email)}}
+               {{ form_widget (vueFormulaire.email)}}
+
+               <br>
+               <br>
+               {{form_row(vueFormulaire.entreprise)}}
+               {{ form_end (vueFormulaire) }}
+		</center>
+	 </div>
+      <div class="col-md-3">
+ </div>
+ </div>
+
+     {% endblock %}

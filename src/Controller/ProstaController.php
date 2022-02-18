@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProstaController extends AbstractController
 {
@@ -108,6 +110,9 @@ class ProstaController extends AbstractController
 	}
 
 
+
+
+
 	/**
 	* @Route ("/AjouterEntreprise" , name ="Ajouter entreprise")
 	*/
@@ -115,24 +120,17 @@ class ProstaController extends AbstractController
 public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $manager)
 
 {
-	$entreprises = new Entreprise();
+	$entreprise = new Entreprise();
 
 	//création de l'objet formulaire 
 
-	$formulaireEntreprise = $this->createFormBuilder($entreprises)
-							->add('nom')
-							->add('adresse')
-							->add('activite',TextareaType::class)
-							->add('URLsite',Urltype::class)
-							->add('Ajouter',SubmitType::class)
-							->getForm();
-
+	$formulaireEntreprise = $this->createForm(EntrepriseType::class,$entreprise);
 	
 	$formulaireEntreprise->handleRequest($requestHttp);
 
 	if ($formulaireEntreprise->isSubmitted())
 	{
-		$manager->persist($entreprises);
+		$manager->persist($entreprise);
 		$manager->flush();
 		return $this->redirectToRoute('pageListeEntreprise');
 	}
@@ -141,6 +139,9 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 
 
 }
+
+
+
 
 	/**
 	* @Route ("/entreprises/{nom}/ModifierEntreprise" , name ="Modifier-entreprise")
@@ -152,22 +153,16 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 		$repositoryEntreprise=$this->getDoctrine()->getRepository(Entreprise::class);
 
 		 $entreprise=$repositoryEntreprise->RecupererEntrepriseAvecNom($nom);
-
-		
 		
 	
 		//création de l'objet formulaire 
+								
 	
-		$formulaireEntreprise = $this->createFormBuilder($entreprise)
-								->add('nom')
-								->add('adresse')
-								->add('activite',TextareaType::class)
-								->add('URLsite',Urltype::class)
-								->add('Ajouter',SubmitType::class)
-								->getForm();
-	
-		
+		$formulaireEntreprise = $this->createForm(EntrepriseType::class,$entreprise);
+
+
 		$formulaireEntreprise->handleRequest($requestHttp);
+
 	
 		if ($formulaireEntreprise->isSubmitted())
 		{
@@ -180,6 +175,47 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 	
 	
 	}
+
+
+
+
+
+
+
+	/**
+	* @Route ("/AjouterStage" , name ="ajouter-stage")
+	*/
+		
+	public function AjouterStage(Request $requestHttp, EntityManagerInterface $manager)
+
+	{
+		$repositoryStage=$this->getDoctrine()->getRepository(Stage::class);
+
+	
+		//création de l'objet formulaire 
+	
+		$stage = new Stage ();
+	
+		$formulaireStage = $this->createForm(StageType::class,$stage);
+		$formulaireStage->handleRequest($requestHttp);
+
+		
+
+
+	
+		if ($formulaireStage->isSubmitted())
+		{
+			$manager->persist($stage);
+			$manager->persist($stage->getEntreprise());
+			$manager->flush();
+			return $this->redirectToRoute('prostages_accueil');
+		}
+	
+		return $this-> render('prosta/pageFormulaireSaisieStage.html.twig',['vueFormulaire'=>$formulaireStage->createView()]);
+	
+	
+	}
+
 
 }
 
