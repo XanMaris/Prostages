@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\Common\Collections\ArrayCollection;
 use App\Form\EntrepriseType;
 use App\Form\StageType;
 
@@ -207,7 +209,6 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 		{
 			$manager->persist($stage);
 			$manager->persist($stage->getEntreprise());
-			$manager->persist($stage->getFormation());
 			$manager->flush();
 			return $this->redirectToRoute('prostages_accueil');
 		}
