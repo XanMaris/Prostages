@@ -2,6 +2,7 @@
 
 namespace App\Form;
 use App\Entity\Stage;
+use App\Entity\Fomration;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -9,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Form\EntrepriseType;
 
 class StageType extends AbstractType
@@ -20,6 +22,20 @@ class StageType extends AbstractType
             ->add('description')
             ->add('email')
             ->add('entreprise',EntrepriseType::class)
+            ->add('formation',EntityType::class,array(
+                'class' => Fomration::class,
+                'choice_label' =>function(Fomration $formation)
+                {
+
+                    return $formation->getNom();
+                },
+                
+                'multiple' => true,
+                'expanded' => true,
+                
+                
+            ))
+            ->add('Ajouter',SubmitType::class)
         ;
     }
 

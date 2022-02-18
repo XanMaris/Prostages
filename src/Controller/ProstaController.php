@@ -207,6 +207,7 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 		{
 			$manager->persist($stage);
 			$manager->persist($stage->getEntreprise());
+			$manager->persist($stage->getFormation());
 			$manager->flush();
 			return $this->redirectToRoute('prostages_accueil');
 		}
