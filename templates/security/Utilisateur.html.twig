@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<form method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Inscrivez-Vous</h1>
+  <div class="row">
+<div class="col-md-3">
+ </div>
+	<div class="col-md-6">
+		<center>
+			{{ form_start (vueFormulaire) }}
+               {{ form_label (vueFormulaire.username)}}
+               {{ form_errors (vueFormulaire.username)}}
+               {{ form_widget (vueFormulaire.username)}}
+
+               {{ form_label (vueFormulaire.password)}}
+               {{ form_errors (vueFormulaire.password)}}
+               {{ form_widget (vueFormulaire.password)}}
+               <br>
+               <br>
+               {{ form_end (vueFormulaire) }}
+		</center>
+	 </div>
+      <div class="col-md-3">
+ </div>
+ </div>
+{% endblock %}
