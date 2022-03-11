@@ -43,6 +43,18 @@
 							<a href="{{ '/formations'}}"> <button type="button">Filtrer par Formation </button></a>
 							<a href="{{ '/AjouterEntreprise'}}"> <button type="button">Ajouter une entreprise </button></a>
 							<a href="{{ '/AjouterStage'}}"> <button type="button">Ajouter un Stage </button></a>
+							{% if is_granted('ROLE_USER') %}
+
+								{{ app.user.username }} 
+								<a href="{{path('app_logout')}}"> <button type="button">Deconnexion</button></a>
+							
+							{% else %}
+							
+							<a href="{{path('app_login')}}"> <button type="button">Connexion</button></a>
+
+							{% endif %}
+
+							
 						</center>
 				  </div>
 			  </div>
