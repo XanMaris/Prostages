@@ -130,7 +130,7 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 	
 	$formulaireEntreprise->handleRequest($requestHttp);
 
-	if ($formulaireEntreprise->isSubmitted())
+	if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
 	{
 		$manager->persist($entreprise);
 		$manager->flush();
@@ -166,7 +166,7 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 		$formulaireEntreprise->handleRequest($requestHttp);
 
 	
-		if ($formulaireEntreprise->isSubmitted())
+		if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
 		{
 			$manager->persist($entreprise);
 			$manager->flush();
@@ -205,7 +205,7 @@ public function ajouterEntreprise(Request $requestHttp, EntityManagerInterface $
 
 
 	
-		if ($formulaireStage->isSubmitted())
+		if ($formulaireStage->isSubmitted() && $formulaireStage->isValid())
 		{
 			$manager->persist($stage);
 			$manager->persist($stage->getEntreprise());

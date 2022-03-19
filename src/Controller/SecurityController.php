@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,12 +44,12 @@ class SecurityController extends AbstractController
 	* @Route ("/Inscription" , name ="app_inscription")
 	*/
 		
-    public function ajouterUtilisateur(Request $requestHttp, EntityManagerInterface $manager)
+    public function ajouterUtilisateur(Request $requestHttp, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
 
     {
-        //Creatio d'un utilisateur vide 
+        //Creation d'un utilisateur vide 
 
-	    $utilisateur = new User();
+	$utilisateur = new User();
 
 	//création de l'objet formulaire de saise d'un utilisateur
 
@@ -56,11 +57,14 @@ class SecurityController extends AbstractController
 	
 	$formulaireUtilisateur->handleRequest($requestHttp);
 
-	if ($formulaireUtilisateur->isSubmitted())
+	if ($formulaireUtilisateur->isSubmitted() && $formulaireUtilisateur->isValid())
 	{
+        $utilisateur->setRoles(['ROLE_USER']);
+        $encodagePassword = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+        $utilisateur->setPassword($encodagePassword);
 		$manager->persist($utilisateur);
 		$manager->flush();
-		return $this->redirectToRoute('pageListeEntreprise');
+		return $this->redirectToRoute('app_login');
 	}
 
 	return $this-> render('Security/Utilisateur.html.twig',['vueFormulaire'=>$formulaireUtilisateur->createView()]);
