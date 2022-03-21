@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fomration{% endblock %}
+
+{% block body %}
+    <h1>Fomration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fomration.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ fomration.nom }}</td>
+            </tr>
+            <tr>
+                <th>NomCourt</th>
+                <td>{{ fomration.nomCourt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('fomration_index') }}">Revenir à la liste</a>
+
+    <a href="{{ path('fomration_edit', {'id': fomration.id}) }}">Modifier</a>
+
+    {{ include('fomration/_delete_form.html.twig') }}
+{% endblock %}

@@ -34,18 +34,18 @@ class Entreprise
     /**
      * @ORM\Column(type="string", length=130)
      * @Assert\Regex(
-     *  pattern= "#^[1-999]( ?bis)?#",
-     * message = "Le numero de route/voie semble incorrect"
+     *  pattern="#^[1-999]( ?bis)?#",
+     *  message="Le numero de route/voie semble incorrect"
      * )
      * 
      * @Assert\Regex(
-     *  pattern= "#route|rue|boulevard|avenue|impasse|voie|allée|place#,
-     * message = "Le type de route/voie semble incorrect"
+     *  pattern="#route|rue|boulevard|avenue|impasse|voie|allée|place#",
+     *  message="Le type de route/voie semble incorrect"
      * )
      * 
      * @Assert\Regex(
-     *  pattern= "# [0-9{5} #",
-     * message = "Le code postal semble erroné"
+     *  pattern="# [0-9{5} #",
+     *  message="Le code postal semble erroné"
      * )
      */
     private $adresse;
