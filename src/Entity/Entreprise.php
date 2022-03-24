@@ -44,7 +44,7 @@ class Entreprise
      * )
      * 
      * @Assert\Regex(
-     *  pattern="# [0-9{5} #",
+     *  pattern="#[0-9]{5}#",
      *  message="Le code postal semble erroné"
      * )
      */
